@@ -1,5 +1,5 @@
 {
-  "name": "strapi-plugin-postgis",
+  "name": "@halay08/strapi-plugin-postgis",
   "version": "0.1.8",
   "description": "Postgis support for strapi CMS.",
   "strapi": {
