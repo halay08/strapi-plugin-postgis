@@ -1,30 +1,24 @@
-
 <div align="center">
 
+<img src="https://github.com/halay08/strapi-plugin-postgis/raw/main/images/github-logo.png?raw=true">
+<img src="https://github.com/halay08/strapi-plugin-postgis/actions/workflows/npm-publish.yml/badge.svg">
+<img src="https://github.com/halay08/strapi-plugin-postgis/actions/workflows/docs-publish-github.yml/badge.svg">
 
-
-<img src="https://github.com/am2222/strapi-plugin-postgis/raw/main/images/github-logo.png?raw=true">
-<img src="https://github.com/am2222/strapi-plugin-postgis/actions/workflows/npm-publish.yml/badge.svg">
-<img src="https://github.com/am2222/strapi-plugin-postgis/actions/workflows/docs-publish-github.yml/badge.svg">
-
-
-  
 <p align="center">
   <strong>
 Add native postgis support to strapi.  </strong>
-<img src="https://github.com/am2222/strapi-plugin-postgis/raw/main/images/screenshot.png?raw=true">
+<img src="https://github.com/halay08/strapi-plugin-postgis/raw/main/images/screenshot.png?raw=true">
 </p>
 
 </div>
 
 ---
 
-
-
-## Under Development 
+## Under Development
 
 ## How does it work?
-Since Strapi does not support native database formats I convert requests before they being sent to the querybuilder and convert all the geometry objects to the `geojson`. 
+
+Since Strapi does not support native database formats I convert requests before they being sent to the querybuilder and convert all the geometry objects to the `geojson`.
 
 ## Installation
 
@@ -34,7 +28,7 @@ Setup your strapi app as usual
 npx create-strapi-app@latest my-project --quickstart
 ```
 
-Install `pg` and `strapi-plugin-postgis` 
+Install `pg` and `strapi-plugin-postgis`
 
 ```javascript
 npm install pg --save
@@ -46,34 +40,31 @@ Make sure to config your strapi to use `postgrs` database as backend, Use this l
 
 Modify your middlewares as following to let strapi load `osm` tiles. Add `'*.tile.openstreetmap.org'` to the `img-src` as follows
 
-
 ```javascript
 // ./config/middlewares.js
 module.exports = [
-  'strapi::errors',
+  "strapi::errors",
   {
-    name: 'strapi::security',
+    name: "strapi::security",
     config: {
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'img-src': ["'self'", 'data:', 'blob:', '*.tile.openstreetmap.org'],
+          "img-src": ["'self'", "data:", "blob:", "*.tile.openstreetmap.org"],
           upgradeInsecureRequests: null,
         },
       },
     },
   },
-  'strapi::cors',
-  'strapi::poweredBy',
-  'strapi::logger',
-  'strapi::query',
-  'strapi::body',
-  'strapi::session',
-  'strapi::favicon',
-  'strapi::public',
+  "strapi::cors",
+  "strapi::poweredBy",
+  "strapi::logger",
+  "strapi::query",
+  "strapi::body",
+  "strapi::session",
+  "strapi::favicon",
+  "strapi::public",
 ];
-
-
 ```
 
 Now in your api folder modify `content-types` and add a new column with the following format
@@ -103,14 +94,12 @@ Now in your api folder modify `content-types` and add a new column with the foll
 
 ```
 
-
-
-
 ## Supported Data Types
 
 ### POINT(0 0)
 
-![Screenshot](https://github.com/am2222/strapi-plugin-postgis/raw/main/images/points.png?raw=true)
+![Screenshot](https://github.com/halay08/strapi-plugin-postgis/raw/main/images/points.png?raw=true)
+
 ```json
 "geom": {
       "columnType": {
@@ -124,6 +113,7 @@ Now in your api folder modify `content-types` and add a new column with the foll
     }
 
 ```
+
 POINT Z (0 0 0)
 
 POINT ZM (0 0 0 0)
@@ -131,7 +121,8 @@ POINT ZM (0 0 0 0)
 POINT EMPTY
 
 ### LINESTRING(0 0,1 1,1 2)
-![Screenshot](https://github.com/am2222/strapi-plugin-postgis/raw/main/images/linestring.png?raw=true)
+
+![Screenshot](https://github.com/halay08/strapi-plugin-postgis/raw/main/images/linestring.png?raw=true)
 
 ```json
     "g_line": {
@@ -152,7 +143,7 @@ LINESTRING EMPTY
 
 ### POLYGON((0 0,4 0,4 4,0 4,0 0),(1 1, 2 1, 2 2, 1 2,1 1))
 
-![Screenshot](https://github.com/am2222/strapi-plugin-postgis/raw/main/images/polygon.png?raw=true)
+![Screenshot](https://github.com/halay08/strapi-plugin-postgis/raw/main/images/polygon.png?raw=true)
 
 ```json
     "g_polygon": {
@@ -182,8 +173,8 @@ GEOMETRYCOLLECTION(POINT(2 3),LINESTRING(2 3,3 4))
 
 GEOMETRYCOLLECTION EMPTY
 
-
 ## TODO
+
 - Add tests
 - Support all the types
 - Add query options like sort by distance, overlap and etc.
@@ -191,8 +182,9 @@ GEOMETRYCOLLECTION EMPTY
 - Add cool pg queries and tilings ;)
 
 ## Thanks to
-* strapi-plugin-point-list for the idea of how to add a custom components to the strapi content types
-* postgis knex plugin
-* leaflet editor plugin
-* strapi team
-* and so many other stuff 
+
+- strapi-plugin-point-list for the idea of how to add a custom components to the strapi content types
+- postgis knex plugin
+- leaflet editor plugin
+- strapi team
+- and so many other stuff

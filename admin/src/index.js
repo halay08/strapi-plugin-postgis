@@ -1,20 +1,19 @@
-import React from 'react';
-import { prefixPluginTranslations } from '@strapi/helper-plugin';
-import { Button } from '@strapi/design-system'
-import { Upload } from '@strapi/icons'
+import React from "react";
+import { prefixPluginTranslations } from "@strapi/helper-plugin";
+import { Button } from "@strapi/design-system";
+import { Upload } from "@strapi/icons";
 
-import pluginPkg from '../../package.json';
-import pluginId from './pluginId';
-import pluginPermissions from './permissions';
+import pluginId from "./pluginId";
+import pluginPermissions from "./permissions";
 
 import Map from "./components/Map";
 import Cell from "./components/Cell";
-import Initializer from './components/Initializer';
-import PluginIcon from './components/PluginIcon';
+import Initializer from "./components/Initializer";
+import PluginIcon from "./components/PluginIcon";
 
-import {capitlizeFirst} from './utils/stringFormatter';
+import { capitlizeFirst } from "./utils/stringFormatter";
 
-const name = pluginPkg.strapi.name;
+const name = "postgis";
 
 /*
   Since strapi doesn't support custom fields in v4, we have to overwrite the current implementation
@@ -29,32 +28,28 @@ const name = pluginPkg.strapi.name;
   });
 });*/
 
-
 const handleTriggerDeployment = () => {
-  alert("hi")
-}
+  alert("hi");
+};
 export default {
   register(app) {
     app.customFields.register({
-      name: 'map',
+      name: "map",
       pluginId,
-      type: 'json',
+      type: "json",
       icon: PluginIcon,
       intlLabel: {
-        id: 'postgis.label',
-        defaultMessage: 'postgis map',
+        id: "postgis.label",
+        defaultMessage: "postgis map",
       },
       intlDescription: {
-        id: 'postgis.description',
-        defaultMessage: 'postgis map description',
+        id: "postgis.description",
+        defaultMessage: "postgis map description",
       },
       components: {
-        Input: async () => import(
-          './components/Map'
-        ),
+        Input: async () => import("./components/Map"),
       },
-      options: {
-      },    
+      options: {},
     });
     //app.addFields({ type: 'postgis', Component: Map });
     // app.addMenuLink({
@@ -94,7 +89,7 @@ export default {
   //   });
   //   app.injectContentManagerComponent("editView", "right-links", {
   //     name: "PreviewButton",
-      
+
   //     Component: () => (
   //       <Button
   //         onClick={() => handleTriggerDeployment}
@@ -107,8 +102,7 @@ export default {
   //   });
   //   app.injectContentManagerComponent("editView", "informations", {
   //     name: "InternalComment",
-     
-      
+
   //     Component: () => (
   //       <Button
   //         onClick={() => handleTriggerDeployment}
@@ -144,7 +138,7 @@ export default {
   // },
   async registerTrads({ locales }) {
     const importedTrads = await Promise.all(
-      locales.map(locale => {
+      locales.map((locale) => {
         return import(`./translations/${locale}.json`)
           .then(({ default: data }) => {
             return {

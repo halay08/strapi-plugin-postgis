@@ -1,6 +1,6 @@
 site_name: Strapi Postgis Plugin
-repo_name: am2222/strapi-plugin-postgis
-repo_url: https://github.com/am2222/strapi-plugin-postgis
+repo_name: halay08/strapi-plugin-postgis
+repo_url: https://github.com/halay08/strapi-plugin-postgis
 theme:
   name: material
   palette:
